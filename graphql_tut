@@ -1,0 +1,79 @@
+Introduction to GraphQL
+=======================
+
+- graphQL is a query language for your API, and a server-side runtime for executing queries
+  using a type system YOU define
+
+- graphQL is not tied to any specific database or storage engine
+
+- a graphQL service is created by defining types and fields on those types;
+  then providing functions for each field on each type
+
+- a graphQL service is below:
+
+type Query {
+	me: User
+}
+
+type User {
+	id: ID
+	name: String
+}
+
+- with functions for each field on each type
+
+function Query_me(request) {
+	return request.auth.user;
+}
+
+function User_name(user) {
+	return user.getName();
+}
+
+
+- after a graphQl service is running, it can receive graphQL queries to validate and execute
+
+{
+	me {
+		name
+	}
+}
+
+- could produce the following JSON result
+
+{
+	"me": {
+		"name": "Luke Skywalker"
+	}
+}
+
+
+Queries and Mutations
+=====================
+
+Fields
+------
+
+- graphQL is about asking for specific fields on objects
+
+{
+	hero {
+		name
+	}
+}
+
+----------------------------
+
+{
+	"data": {
+		"hero": {
+			"name": "R2-D2"
+		}
+	}
+}
+
+
+- you can see immediately that the query has exactly the same shape as the result
+
+- the field 'name' returns a 'String' type
+

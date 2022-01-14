@@ -1,0 +1,43 @@
+A Restful Approach...
+
+- Endpoint for a particular book:
+
+  domain.com/books/:id
+
+- Endpoint for getting the author info of that book:
+
+  domain.com/authors/:id
+
+A GraphQL Approach...
+
+- Query to get book data and its author data (AND the other books)
+
+{
+  book(id: 123) {
+    title
+    genre
+    reviews
+    author {
+      name
+      bio
+      books {
+        name
+      }
+    }
+  }
+}
+
+- if we want less information, we can query...
+  (we only want the titles of the book(s) and name of author)
+
+{
+  book(id: 123) {
+    title
+    author{
+      name
+    }
+    books {
+      name
+    }
+  }
+}
